@@ -1,8 +1,5 @@
 Print @ "Wolfram Expression Server 1.0";
 Print @ "Server Usage: wolframserver.wls [port]";
-Print @ "";
-Print @ "Clients make a HTTP POST requests where the BODY data contains the Wolfram Language expression";
-Print @ "Server returns ExpressionJSON data of the evaluated expression";
 
 If[ Length[$ScriptCommandLine] == 2, port = ToExpression @ Part[$ScriptCommandLine,2], port = Automatic ];
 
