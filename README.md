@@ -43,6 +43,13 @@ Examples of language specific clients are in the `clients` directory.
 "'Fri 26 Jul 2019 14:25:56'"
 ```
 
+##### Using Wolfram Language
+
+```
+> wolfram-client.wls "DateString[]"
+"'Fri 26 Jul 2019 14:45:41'"
+```
+
 ##### Using Go
 
 Directly:
