@@ -32,7 +32,7 @@ Examples of language specific clients are in the `clients` directory.
 ##### Using curl
 
 ```
- > curl -d "DateString[]" -X POST http://127.0.0.1:5858
+> curl -d "DateString[]" -X POST http://127.0.0.1:5858
 "'Fri 26 Jul 2019 14:33:28'"
 ```
 
@@ -48,7 +48,7 @@ Examples of language specific clients are in the `clients` directory.
 Directly:
 
 ```
->go run go-client.go "DateString[]"
+> go run go-client.go "DateString[]"
 URL:> http://127.0.0.1:5858
 response Status: 200 OK
 response Headers: map[Content-Type:[application/json]]
@@ -60,7 +60,6 @@ With compilation:
 
 ```
 > go build go-client.go
-
 > go-client.exe "DateString[]"
 URL:> http://127.0.0.1:5858
 response Status: 200 OK
@@ -88,21 +87,6 @@ statusCode: 200
 ##### Using Windows PowerShell
 
 ```
-> Invoke-WebRequest -Method POST -Body "DateString[]" -Uri http://127.0.0.1:5858
-
-
-StatusCode        : 200
-StatusDescription : OK
-Content           : "'Fri 26 Jul 2019 14:28:57'"
-RawContent        : HTTP/1.1 200 OK
-                    Content-Type: application/json
-
-                    "'Fri 26 Jul 2019 14:28:57'"
-Forms             : {}
-Headers           : {[Content-Type, application/json]}
-Images            : {}
-InputFields       : {}
-Links             : {}
-ParsedHtml        : System.__ComObject
-RawContentLength  : 28
+> (Invoke-WebRequest -Method POST -Body "DateString[]" -Uri http://127.0.0.1:5858).Content
+"'Fri 26 Jul 2019 14:36:47'"
 ```
