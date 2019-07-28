@@ -21,13 +21,15 @@ listener = SocketListen[
      data = assoc["Data"]
      },
     request = ImportString[data, "HTTPRequest"];
+    origin = Association[ request["Headers"] ]["origin"];
+    Print[origin];
     result = ExportString[ ToExpression[ request["Body"], StandardForm ], "ExpressionJSON" ];
     response = 
      ExportString[
       HTTPResponse[
        result, <|"StatusCode" -> 200, 
         "ContentType" -> "application/json",
-        "Headers" -> { "Access-Control-Allow-Origin" -> "null" }
+        "Headers" -> { "Access-Control-Allow-Origin" -> origin }
       |>], "HTTPResponse"];
     WriteString[client, response];
 	ApacheLog[ request["Body"] ];
