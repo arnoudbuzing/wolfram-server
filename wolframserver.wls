@@ -26,7 +26,9 @@ listener = SocketListen[
      ExportString[
       HTTPResponse[
        result, <|"StatusCode" -> 200, 
-        "ContentType" -> "application/json"|>], "HTTPResponse"];
+        "ContentType" -> "application/json",
+        "Headers" -> { "Access-Control-Allow-Origin" -> "null" }
+      |>], "HTTPResponse"];
     WriteString[client, response];
 	ApacheLog[ request["Body"] ];
     Close[client]
