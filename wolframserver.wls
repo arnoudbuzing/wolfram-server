@@ -36,7 +36,7 @@ listener = SocketListen[
 
 url = URLBuild[<|"Scheme" -> "http", "Domain" -> First[listener["Socket"]["DestinationIPAddress"]], "Port" -> listener["Socket"]["DestinationPort"]|>];
 
-task = First @ AsynchronousTasks[];
-
 Print["Ready & Listening on: ", url, "\n"];
-WaitAsynchronousTask[task]; 
+
+task = ZeroMQLink`Private`$AsyncState["Task"]; (* undocumented way to get as the async task of the socket listener *)
+WaitAsynchronousTask[task];
