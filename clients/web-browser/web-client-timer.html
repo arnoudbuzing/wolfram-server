@@ -1,0 +1,27 @@
+<!doctype html>
+
+<html>
+<head>
+    <title>web client</title>
+</head>
+
+<body>
+    <h1>DateString[]</h1>
+    <div id='result'></div>
+    <script>
+    var dateVar = setInterval( dateTimer, 1000 );
+    function dateTimer() {
+        const request = new XMLHttpRequest();
+        const url = 'http://127.0.0.1:5858';
+        data = 'DateString[]';
+        request.onload = function() {
+            document.getElementById("result").innerHTML = request.responseText;
+        }
+        request.open('POST', url, true);
+        request.send(data);
+    }
+    </script>
+
+</body>
+
+</html>
