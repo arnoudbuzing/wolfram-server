@@ -14,11 +14,13 @@ ApacheLog[ str_String ] := Module[{}, Print[ "127.0.0.1 - - " <> ApacheDateStrin
 listener = SocketListen[
   port,
   Function[{assoc},
-   With[{
-     client = assoc["SourceSocket"],
-     data = assoc["Data"]
-     },
-    request = ImportString[data, "HTTPRequest"]; Print @ InputForm @ request;
+    With[{
+      client = assoc["SourceSocket"],
+      data = assoc["Data"]
+    },
+    dPrint @ data;
+    request = ImportString[data, "HTTPRequest"];
+    dPrint @ InputForm @ request;
     origin = Association[ request["Headers"] ]["origin"];
     result = ExportString[ ToExpression[ request["Body"], StandardForm ], "ExpressionJSON" ];
     response = ExportString[
