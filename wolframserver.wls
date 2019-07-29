@@ -1,7 +1,7 @@
 Print @ "Wolfram Expression Server 0.0.1 (alpha)";
 Print @ "Usage: wolframserver.wls [port]\n";
 
-If[ Length[$ScriptCommandLine] == 2, port = ToExpression @ Part[$ScriptCommandLine,2], port = Automatic ];
+If[ Length[$ScriptCommandLine] == 2, port = ToExpression @ Part[$ScriptCommandLine,2], port = 5858 ];
 
 Print["Port:       ", port];
 Print["$ProcessID: ", $ProcessID];
@@ -18,7 +18,7 @@ listener = SocketListen[
      client = assoc["SourceSocket"],
      data = assoc["Data"]
      },
-    request = ImportString[data, "HTTPRequest"];
+    request = ImportString[data, "HTTPRequest"]; Print @ InputForm @ request;
     origin = Association[ request["Headers"] ]["origin"];
     result = ExportString[ ToExpression[ request["Body"], StandardForm ], "ExpressionJSON" ];
     response = ExportString[
