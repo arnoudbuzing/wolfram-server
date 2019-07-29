@@ -18,9 +18,7 @@ listener = SocketListen[
       client = assoc["SourceSocket"],
       data = assoc["Data"]
     },
-    dPrint @ data;
     request = ImportString[data, "HTTPRequest"];
-    dPrint @ InputForm @ request;
     origin = Association[ request["Headers"] ]["origin"];
     result = ExportString[ ToExpression[ request["Body"], StandardForm ], "ExpressionJSON" ];
     response = ExportString[
