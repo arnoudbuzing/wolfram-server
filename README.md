@@ -75,12 +75,19 @@ response Body: "'Fri 26 Jul 2019 14:31:41'"
 
 ```
 
-
 ##### Using Python
 
 ```
 > python-client.py "DateString[]"
 result: "'Fri 26 Jul 2019 14:30:43'"
+```
+
+#### Using R
+
+```
+library(httr)
+r <- POST('http://127.0.0.1:5858', body = 'DateString[]' )
+print(content(r))
 ```
 
 ##### Using NodeJS
