@@ -6,12 +6,13 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.2/codemirror.min.js'></script>
     <!-- <link rel='stylesheet' href='codemirror/lib/codemirror.css'> -->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.2/codemirror.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.2/theme/midnight.min.css'>
     <!-- <script src='codemirror/mode/mathematica/mathematica.js'></script> -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.2/mode/mathematica/mathematica.min.js'></script>
 </head>
 <body>
 <script>
-function clicker() {
+function evaluate_in_wolfram_language() {
  const request = new XMLHttpRequest();
  const url = 'http://127.0.0.1:5858';
  data = cm.getValue();
@@ -25,11 +26,18 @@ function clicker() {
 <hr>
 <div id='result'></div>
 
+
 <script>
-var cm = CodeMirror.fromTextArea(myTextArea, {value:'(* add code here *)', mode:'mathematica', lineNumbers: true});
-var editor = cm.getDoc().getEditor();
+var cm = CodeMirror.fromTextArea(myTextArea, {
+ value:'(* add code here *)',
+ mode:'mathematica',
+ lineNumbers: true,
+ theme: 'midnight'
+ });
+var doc = cm.getDoc();
+var editor = doc.getEditor();
 editor.setOption('extraKeys', {
- 'Shift-Enter': function(cm) { clicker(); }
+ 'Shift-Enter': function(cm) { evaluate_in_wolfram_language(); }
 });
 </script>
 
