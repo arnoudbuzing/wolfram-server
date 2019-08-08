@@ -2,12 +2,9 @@
 <head>
     <title>Code Mirror</title>
     <meta charset='utf-8'>
-    <!-- <script src='codemirror/lib/codemirror.js'></script> -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.2/codemirror.min.js'></script>
-    <!-- <link rel='stylesheet' href='codemirror/lib/codemirror.css'> -->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.2/codemirror.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.2/theme/midnight.min.css'>
-    <!-- <script src='codemirror/mode/mathematica/mathematica.js'></script> -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.2/mode/mathematica/mathematica.min.js'></script>
 </head>
 <body>
@@ -15,30 +12,40 @@
 function evaluate_in_wolfram_language() {
  const request = new XMLHttpRequest();
  const url = 'http://127.0.0.1:5858';
- data = cm.getValue();
- request.onload = function() { document.getElementById("result").innerHTML = request.responseText; }
+ data = cmInput.getValue();
+ request.onload = function() {
+  cmOutput.setValue(request.responseText);
+ }
  request.open('POST', url, true);
  request.send(data);
 }
 </script>
-<textarea id='myTextArea'>
-</textarea>
-<hr>
-<div id='result'></div>
 
+<h4>Wolfram Language input area (press Shift-Enter to evaluate)</h4>
+<textarea id='inputArea'></textarea>
+<hr>
+<h4>ExpressionJSON output area</h4>
+<textarea id='outputArea'></textarea>
 
 <script>
-var cm = CodeMirror.fromTextArea(myTextArea, {
+var cmInput = CodeMirror.fromTextArea(inputArea, {
  value:'(* add code here *)',
  mode:'mathematica',
  lineNumbers: true,
  theme: 'midnight'
  });
-var doc = cm.getDoc();
+var doc = cmInput.getDoc();
 var editor = doc.getEditor();
 editor.setOption('extraKeys', {
  'Shift-Enter': function(cm) { evaluate_in_wolfram_language(); }
 });
+
+var cmOutput = CodeMirror.fromTextArea(outputArea, {
+ value:'(* add code here *)',
+ mode:'json',
+ lineNumbers: true,
+ theme: 'midnight'
+ });
 </script>
 
 </body>
