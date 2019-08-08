@@ -6,6 +6,7 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.2/codemirror.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.2/theme/midnight.min.css'>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.2/mode/mathematica/mathematica.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.2/mode/javascript/javascript.min.js'></script>
 </head>
 <body>
 <script>
@@ -42,7 +43,7 @@ editor.setOption('extraKeys', { 'Shift-Enter': function(cm) { evaluate_in_wolfra
 
 var cmOutput = CodeMirror.fromTextArea(outputArea, {
  value:'(* add code here *)',
- mode:'json',
+ mode:'javascript',
  lineNumbers: true,
  theme: 'midnight'
  });
