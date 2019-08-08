@@ -36,9 +36,7 @@ var cmInput = CodeMirror.fromTextArea(inputArea, {
  });
 var doc = cmInput.getDoc();
 var editor = doc.getEditor();
-editor.setOption('extraKeys', {
- 'Shift-Enter': function(cm) { evaluate_in_wolfram_language(); }
-});
+editor.setOption('extraKeys', { 'Shift-Enter': function(cm) { evaluate_in_wolfram_language(); } } );
 
 var cmOutput = CodeMirror.fromTextArea(outputArea, {
  value:'(* add code here *)',
