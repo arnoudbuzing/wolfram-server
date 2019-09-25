@@ -21,6 +21,7 @@ listener = SocketListen[
     },
     request = ImportString[data, "HTTPRequest"];
     origin = Association[ request["Headers"] ]["origin"];
+    If[ Head[origin]===Missing, origin="" ];
     result = ExportString[ ToExpression[ request["Body"], StandardForm ], "ExpressionJSON" ];
     response = ExportString[
       HTTPResponse[ result, <|
@@ -40,6 +41,6 @@ url = URLBuild[<|"Scheme" -> "http", "Domain" -> First[listener["Socket"]["Desti
 
 Print["Listening:  ", url, "\n"];
 
-task = ZeroMQLink`Private`$AsyncState["Task"]; (* undocumented way to get at the async task of the socket listener *)
+task = ZeroMQLink`Private`$AsyncState["Task"];
 WaitAsynchronousTask[task];
 
