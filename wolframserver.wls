@@ -1,3 +1,4 @@
+#!/usr/bin/env wolframscript
 Print @ "Wolfram Expression Server 0.0.1 (alpha)";
 Print @ "Usage: wolframserver.wls [port]\n";
 
@@ -29,6 +30,7 @@ listener = SocketListen[
       |>], "HTTPResponse"];
     WriteString[client, response];
     ApacheLog[ request["Body"] ];
+    Pause @ 4;
     Close[client]
     ]
    ]
@@ -38,5 +40,6 @@ url = URLBuild[<|"Scheme" -> "http", "Domain" -> First[listener["Socket"]["Desti
 
 Print["Listening:  ", url, "\n"];
 
-task = ZeroMQLink`Private`$AsyncState["Task"]; (* undocumented way to get as the async task of the socket listener *)
+task = ZeroMQLink`Private`$AsyncState["Task"]; (* undocumented way to get at the async task of the socket listener *)
 WaitAsynchronousTask[task];
+
