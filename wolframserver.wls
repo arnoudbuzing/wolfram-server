@@ -31,7 +31,6 @@ listener = SocketListen[
       |>], "HTTPResponse"];
     WriteString[client, response];
     ApacheLog[ request["Body"] ];
-    Pause @ 4;
     Close[client]
     ]
    ]
@@ -43,4 +42,4 @@ Print["Listening:  ", url, "\n"];
 
 task = ZeroMQLink`Private`$AsyncState["Task"];
 WaitAsynchronousTask[task];
-
+Print["Exiting..."];
