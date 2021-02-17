@@ -17,10 +17,9 @@ listener = SocketListen[
   Function[{assoc},
     With[{
       client = assoc["SourceSocket"],
-      data = assoc["Data"]
+      request = ImportString[assoc["Data"], "HTTPRequest"]
     },
-    request = ImportString[data, "HTTPRequest"];
-    origin = Association[ request["Headers"] ]["origin"];
+    origin = Association[request["Headers"] ]["origin"];
     If[ Head[origin]===Missing, origin="" ];
     result = ExportString[ ToExpression[ request["Body"], StandardForm ], "ExpressionJSON" ];
     response = ExportString[
@@ -40,6 +39,4 @@ url = URLBuild[<|"Scheme" -> "http", "Domain" -> First[listener["Socket"]["Desti
 
 Print["Listening:  ", url, "\n"];
 
-task = ZeroMQLink`Private`$AsyncState["Task"];
-WaitAsynchronousTask[task];
-Print["Exiting..."];
+Pause[2^60];
